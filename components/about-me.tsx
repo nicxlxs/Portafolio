@@ -78,7 +78,7 @@ export default function AboutMe() {
             href="https://drive.google.com/file/d/1KVCXhaGwUcCHTPvhVE2YEs00PdW099HR/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1A1A1A] hover:bg-[#2A2A2A] transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-900 dark:bg-[#1A1A1A] hover:bg-black dark:hover:bg-[#2A2A2A] transition-colors text-white"
           >
             <Download className="w-5 h-5" />
             <span>{t.aboutMe?.downloadCV || "Download CV"}</span>
