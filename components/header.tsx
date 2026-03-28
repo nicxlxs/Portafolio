@@ -5,11 +5,17 @@ import { HomeIcon, Sun, Moon } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useLanguage, useTranslations } from "@/contexts/LanguageContext"
 import MobileNav from "./mobile-nav"
+import { useEffect, useState } from "react"
 
 export default function Header() {
   const { theme, setTheme } = useTheme()
   const { language, setLanguage } = useLanguage()
   const t = useTranslations()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId)
@@ -66,13 +72,15 @@ export default function Header() {
           >
             {language}
           </button>
-          <button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="p-2 rounded-full bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-white/10 dark:text-white dark:hover:bg-white/20 transition-colors"
-            aria-label="Cambiar tema"
-          >
-            {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-          </button>
+          {mounted && (
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="p-2 rounded-full bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-white/10 dark:text-white dark:hover:bg-white/20 transition-colors"
+              aria-label={t.header?.changeTheme || "Change theme"}
+            >
+              {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            </button>
+          )}
         </div>
 
         <MobileNav />

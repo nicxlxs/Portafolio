@@ -245,7 +245,7 @@ export default function Certifications() {
                             rel="noopener noreferrer"
                             className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors text-white"
                           >
-                            Verificar <ExternalLink className="w-4 h-4" />
+                            {t.certifications?.verify || "Verificar"} <ExternalLink className="w-4 h-4" />
                           </a>
                         )}
                         <p className="text-gray-400">
@@ -261,14 +261,14 @@ export default function Certifications() {
             <button
               onClick={handlePrevious}
               className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 hover:bg-black/70 text-white transition-colors z-10"
-              aria-label="Previous certificate"
+              aria-label={t.certifications?.previousCert || "Previous certificate"}
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
             <button
               onClick={handleNext}
               className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 hover:bg-black/70 text-white transition-colors z-10"
-              aria-label="Next certificate"
+              aria-label={t.certifications?.nextCert || "Next certificate"}
             >
               <ChevronRight className="w-6 h-6" />
             </button>

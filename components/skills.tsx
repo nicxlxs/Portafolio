@@ -115,8 +115,13 @@ export default function Skills() {
   const t = useTranslations()
   const [category, setCategory] = useState<keyof typeof skillCategories>("Frontend")
   const [isMobile, setIsMobile] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const { theme } = useTheme()
   const controls = useAnimation()
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     // Detectar si es móvil
@@ -207,18 +212,20 @@ export default function Skills() {
               >
                 <div className="w-20 h-28 md:w-32 md:h-44 rounded-lg bg-white dark:bg-white/90 p-4 md:p-6 flex flex-col items-center justify-between shadow-[0_10px_20px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.2)] transition-shadow duration-300">
                   <div className="relative w-8 h-8 md:w-12 md:h-12 mb-2">
-                    <Image
-                      src={
-                        typeof skill.icon === "string"
-                          ? skill.icon
-                          : theme === "dark"
-                            ? skill.icon.dark
-                            : skill.icon.light
-                      }
-                      alt={skill.name}
-                      fill
-                      className="object-contain"
-                    />
+                    {mounted && (
+                      <Image
+                        src={
+                          typeof skill.icon === "string"
+                            ? skill.icon
+                            : theme === "dark"
+                              ? skill.icon.dark
+                              : skill.icon.light
+                        }
+                        alt={skill.name}
+                        fill
+                        className="object-contain"
+                      />
+                    )}
                   </div>
                   <span className="text-xs md:text-sm font-medium text-gray-900">{skill.name}</span>
                 </div>

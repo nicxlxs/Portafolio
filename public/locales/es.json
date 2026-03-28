@@ -3,7 +3,8 @@
     "certifications": "Certificaciones",
     "skills": "Habilidades",
     "projects": "Proyectos",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "changeTheme": "Cambiar tema"
   },
   "aboutMe": {
     "title": "Acerca de Mí",
@@ -13,6 +14,9 @@
   "certifications": {
     "title": "Certificaciones",
     "subtitle": "Certificaciones profesionales en tecnología, metodologías ágiles e idiomas",
+    "previousCert": "Certificado anterior",
+    "nextCert": "Siguiente certificado",
+    "verify": "Verificar",
     "blockchain": {
       "title": "Blockchain",
       "description": "Especialización en tecnología Blockchain y contratos inteligentes"
@@ -68,6 +72,8 @@
   },
   "mobileNav": {
     "menu": "Menú",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
     "lightMode": "Modo Claro",
     "darkMode": "Modo Oscuro",
     "about": "About"
