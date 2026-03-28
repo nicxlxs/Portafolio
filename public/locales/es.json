@@ -6,7 +6,7 @@
     "contact": "Contacto"
   },
   "aboutMe": {
-    "title": "About Me",
+    "title": "Acerca de Mí",
     "description": "Soy un estudiante apasionado de ingeniería de software con un fuerte interés en el desarrollo web y la creación de soluciones innovadoras. Me encanta aprender nuevas tecnologías y aplicarlas en proyectos desafiantes.",
     "downloadCV": "Descargar CV"
   },
@@ -27,14 +27,15 @@
   },
   "skills": {
     "title": "Habilidades",
+    "theseAreMy": "Estas son mis",
     "frontend": "Frontend",
     "backend": "Backend",
     "tools": "Herramientas"
   },
   "projects": {
-    "title": "My Projects",
+    "title": "Mis Proyectos",
     "viewMore": "Ver más",
-    "moreProjects": "More Projects",
+    "moreProjects": "Más Proyectos",
     "cargasafe": {
       "title": "CargaSafe",
       "description": "Aplicación web para la gestión y monitoreo seguro de cargas, que permite rastrear envíos, controlar su estado y garantizar la integridad durante el transporte."
@@ -53,7 +54,7 @@
     }
   },
   "contact": {
-    "title": "Contact",
+    "title": "Contacto",
     "interested": "¿Interesado en mí?",
     "getInTouch": "No dudes en contactarme.",
     "name": "Nombre",

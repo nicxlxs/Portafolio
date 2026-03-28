@@ -27,6 +27,7 @@
   },
   "skills": {
     "title": "Skills",
+    "theseAreMy": "These are my",
     "frontend": "Frontend",
     "backend": "Backend",
     "tools": "Tools"
