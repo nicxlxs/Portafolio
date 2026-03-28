@@ -75,7 +75,7 @@ export default function AboutMe() {
           </div>
 
           <a
-            href="https://drive.google.com/file/d/1KVCXhaGwUcCHTPvhVE2YEs00PdW099HR/view?usp=sharing"
+            href="https://drive.google.com/file/d/1WA1UTFFi9V20dx9rWXzn8hmZeuvtGO8G/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-900 dark:bg-[#1A1A1A] hover:bg-black dark:hover:bg-[#2A2A2A] transition-colors text-white"
