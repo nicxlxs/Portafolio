@@ -4,8 +4,9 @@ import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import { useState, useEffect } from "react"
 import { GraduationCap, Code, Languages, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react"
+import { useTranslations } from "@/contexts/LanguageContext"
 
-const certifications = {
+const certificationsData = {
   blockchain: {
     icon: <Code className="w-6 h-6" />,
     title: "Blockchain",
@@ -129,14 +130,15 @@ const certifications = {
 }
 
 export default function Certifications() {
-  const [selectedCategory, setSelectedCategory] = useState<keyof typeof certifications>("blockchain")
+  const t = useTranslations()
+  const [selectedCategory, setSelectedCategory] = useState<keyof typeof certificationsData>("blockchain")
   const [selectedCert, setSelectedCert] = useState<number>(0)
   const [direction, setDirection] = useState<number>(0)
 
   useEffect(() => {
     const timer = setInterval(() => {
       setDirection(1)
-      setSelectedCert((prev) => (prev + 1) % certifications[selectedCategory].certificates.length)
+      setSelectedCert((prev) => (prev + 1) % certificationsData[selectedCategory].certificates.length)
     }, 5000)
 
     return () => clearInterval(timer)
@@ -144,12 +146,12 @@ export default function Certifications() {
 
   const handlePrevious = () => {
     setDirection(-1)
-    setSelectedCert((prev) => (prev === 0 ? certifications[selectedCategory].certificates.length - 1 : prev - 1))
+    setSelectedCert((prev) => (prev === 0 ? certificationsData[selectedCategory].certificates.length - 1 : prev - 1))
   }
 
   const handleNext = () => {
     setDirection(1)
-    setSelectedCert((prev) => (prev + 1) % certifications[selectedCategory].certificates.length)
+    setSelectedCert((prev) => (prev + 1) % certificationsData[selectedCategory].certificates.length)
   }
 
   const slideVariants = {
@@ -172,7 +174,7 @@ export default function Certifications() {
   return (
     <section id="certifications" className="min-h-screen flex flex-col items-center justify-center py-20 px-4">
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">Certificaciones</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">{t.certifications?.title || "Certificaciones"}</h2>
         <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
           Certificaciones profesionales en tecnología, metodologías ágiles e idiomas
         </p>
@@ -180,11 +182,11 @@ export default function Certifications() {
 
       <div className="w-full max-w-6xl mx-auto">
         <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {Object.entries(certifications).map(([key, value]) => (
+          {Object.entries(certificationsData).map(([key, value]) => (
             <button
               key={key}
               onClick={() => {
-                setSelectedCategory(key as keyof typeof certifications)
+                setSelectedCategory(key as keyof typeof certificationsData)
                 setSelectedCert(0)
               }}
               className={`flex items-center gap-2 px-6 py-3 rounded-full transition-all transform hover:scale-105 ${
@@ -217,28 +219,28 @@ export default function Certifications() {
               >
                 <div className="relative w-full h-full bg-gray-900 rounded-3xl overflow-hidden">
                   <Image
-                    src={certifications[selectedCategory].certificates[selectedCert].image || "/placeholder.svg"}
-                    alt={certifications[selectedCategory].certificates[selectedCert].title}
+                    src={certificationsData[selectedCategory].certificates[selectedCert].image || "/placeholder.svg"}
+                    alt={certificationsData[selectedCategory].certificates[selectedCert].title}
                     fill
                     className="object-contain"
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
                     <h3 className="text-2xl font-bold text-white mb-1">
-                      {certifications[selectedCategory].certificates[selectedCert].title}
+                      {certificationsData[selectedCategory].certificates[selectedCert].title}
                     </h3>
                     <div className="flex justify-between items-center">
                       <div>
                         <p className="text-gray-300">
-                          {certifications[selectedCategory].certificates[selectedCert].institution}
+                          {certificationsData[selectedCategory].certificates[selectedCert].institution}
                         </p>
                         <p className="text-gray-400">
-                          {certifications[selectedCategory].certificates[selectedCert].date}
+                          {certificationsData[selectedCategory].certificates[selectedCert].date}
                         </p>
                       </div>
                       <div className="flex items-center gap-4">
-                        {certifications[selectedCategory].certificates[selectedCert].verifyUrl && (
+                        {certificationsData[selectedCategory].certificates[selectedCert].verifyUrl && (
                           <a
-                            href={certifications[selectedCategory].certificates[selectedCert].verifyUrl}
+                            href={certificationsData[selectedCategory].certificates[selectedCert].verifyUrl}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors text-white"
@@ -247,7 +249,7 @@ export default function Certifications() {
                           </a>
                         )}
                         <p className="text-gray-400">
-                          Credential: {certifications[selectedCategory].certificates[selectedCert].credential}
+                          Credential: {certificationsData[selectedCategory].certificates[selectedCert].credential}
                         </p>
                       </div>
                     </div>

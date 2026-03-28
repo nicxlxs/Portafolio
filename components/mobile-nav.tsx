@@ -4,18 +4,20 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, Sun, Moon } from "lucide-react"
 import { useTheme } from "next-themes"
+import { useLanguage, useTranslations } from "@/contexts/LanguageContext"
 
 export default function MobileNav() {
   const [isOpen, setIsOpen] = useState(false)
   const { theme, setTheme } = useTheme()
-  const [language, setLanguage] = useState("ES")
+  const { language, setLanguage } = useLanguage()
+  const t = useTranslations()
 
   const menuItems = [
-    { name: "About", id: "about" },
-    { name: "Certificaciones", id: "certifications" },
-    { name: "Habilidades", id: "skills" },
-    { name: "Proyectos", id: "projects" },
-    { name: "Contacto", id: "contact" },
+    { name: t.mobileNav?.about || "About", id: "about" },
+    { name: t.header?.certifications || "Certificaciones", id: "certifications" },
+    { name: t.header?.skills || "Habilidades", id: "skills" },
+    { name: t.header?.projects || "Proyectos", id: "projects" },
+    { name: t.header?.contact || "Contacto", id: "contact" },
   ]
 
   const scrollToSection = (sectionId: string) => {
@@ -50,7 +52,7 @@ export default function MobileNav() {
               className="fixed right-0 top-0 h-full w-64 bg-white dark:bg-gray-900 z-50 p-6"
             >
               <div className="flex justify-between items-center mb-8">
-                <h2 className="text-xl font-bold">Menu</h2>
+                <h2 className="text-xl font-bold">{t.mobileNav?.menu || "Menu"}</h2>
                 <button
                   onClick={() => setIsOpen(false)}
                   className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
@@ -74,8 +76,8 @@ export default function MobileNav() {
 
               <div className="absolute bottom-8 left-6 right-6 space-y-4">
                 <button
-                  onClick={() => setLanguage((prev) => (prev === "ES" ? "EN" : "ES"))}
-                  className="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                  onClick={() => setLanguage(language === "es" ? "en" : "es")}
+                  className="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors uppercase"
                 >
                   {language}
                 </button>
@@ -85,11 +87,11 @@ export default function MobileNav() {
                 >
                   {theme === "dark" ? (
                     <>
-                      <Sun className="w-4 h-4" /> Light Mode
+                      <Sun className="w-4 h-4" /> {t.mobileNav?.lightMode || "Light Mode"}
                     </>
                   ) : (
                     <>
-                      <Moon className="w-4 h-4" /> Dark Mode
+                      <Moon className="w-4 h-4" /> {t.mobileNav?.darkMode || "Dark Mode"}
                     </>
                   )}
                 </button>

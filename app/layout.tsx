@@ -1,6 +1,7 @@
 import type React from "react"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { LanguageProvider } from "@/contexts/LanguageContext"
 import Background from "@/components/background"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
@@ -20,12 +21,14 @@ export default function RootLayout({
     <html lang="es" suppressHydrationWarning>
       <body className="bg-white dark:bg-[#121212] text-gray-900 dark:text-white transition-colors duration-300">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <Background />
-          <div className="flex flex-col min-h-screen">
-            <Header />
-            <main className="flex-grow">{children}</main>
-            <Footer />
-          </div>
+          <LanguageProvider>
+            <Background />
+            <div className="flex flex-col min-h-screen">
+              <Header />
+              <main className="flex-grow">{children}</main>
+              <Footer />
+            </div>
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

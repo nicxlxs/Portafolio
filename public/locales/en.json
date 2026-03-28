@@ -1,0 +1,73 @@
+{
+  "header": {
+    "certifications": "Certifications",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "aboutMe": {
+    "title": "About Me",
+    "description": "I am a passionate software engineering student with a strong interest in web development and creating innovative solutions. I love learning new technologies and applying them to challenging projects.",
+    "downloadCV": "Download CV"
+  },
+  "certifications": {
+    "title": "Certifications",
+    "blockchain": {
+      "title": "Blockchain",
+      "description": "Specialization in Blockchain technology and smart contracts"
+    },
+    "scrum": {
+      "title": "Scrum Master",
+      "description": "Professional certification in agile methodologies"
+    },
+    "english": {
+      "title": "English",
+      "description": "Advanced level certification in English language"
+    }
+  },
+  "skills": {
+    "title": "Skills",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "tools": "Tools"
+  },
+  "projects": {
+    "title": "My Projects",
+    "viewMore": "View More",
+    "moreProjects": "More Projects",
+    "cargasafe": {
+      "title": "CargaSafe",
+      "description": "Web application developed to manage domestic hydroponics projects."
+    },
+    "connectly": {
+      "title": "Connectly",
+      "description": "Web application developed to manage domestic hydroponics projects."
+    },
+    "nutrigain": {
+      "title": "NutriGain",
+      "description": "Task management application with collaborative features."
+    },
+    "smartgarden": {
+      "title": "Smart Garden",
+      "description": "Web application developed to manage domestic hydroponics projects."
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "interested": "Interested in me?",
+    "getInTouch": "Feel free to contact me.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send"
+  },
+  "footer": {
+    "copyright": "My Portfolio. All rights reserved."
+  },
+  "mobileNav": {
+    "menu": "Menu",
+    "lightMode": "Light Mode",
+    "darkMode": "Dark Mode",
+    "about": "About"
+  }
+}

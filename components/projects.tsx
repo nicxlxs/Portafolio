@@ -3,35 +3,36 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { ArrowRight, Github } from "lucide-react"
+import { useTranslations } from "@/contexts/LanguageContext"
 
 const projects = [
   {
     title: "CargaSafe",
-    description: "Aplicación web desarrollada para gestionar proyectos domésticos de hidroponía.",
+    descriptionKey: "cargasafe",
     image: "/projects/cargasafe.png",
     tags: ["Angular", "Java", "PostgreSQL"],
-    link: "#",
+    link: "https://carga-safe.web.app/",
     github: "https://github.com/Los-Parkers-IoT/iot-solutions-development-cargasafe-frontend",
   },
   {
     title: "Connectly",
-    description: "Aplicación web desarrollada para gestionar proyectos domésticos de hidroponía.",
+    descriptionKey: "connectly",
     image: "/projects/connectly.png",
     tags: ["Python", "Tailwind", "MySQL"],
-    link: "#",
+    link: "https://connectly-ywvg.onrender.com/login",
     github: "https://github.com/UPC-SmartGarden-SW56",
   },
   {
     title: "NutriGain",
-    description: "Aplicación de gestión de tareas con características colaborativas.",
+    descriptionKey: "nutrigain",
     image: "/projects/nutrigain.png",
     tags: ["Angular", "Java", "MySQL"],
-    link: "#",
+    link: "https://front-azl2.vercel.app/",
     github: "https://github.com/UPC-NutriGain",
   },
   {
     title: "Smart Garden",
-    description: "Aplicación web desarrollada para gestionar proyectos domésticos de hidroponía.",
+    descriptionKey: "smartgarden",
     image: "/projects/smart-garden.png",
     tags: ["Angular", "Java", "MySQL"],
     link: "#",
@@ -40,6 +41,8 @@ const projects = [
 ]
 
 export default function Projects() {
+  const t = useTranslations()
+
   return (
     <section id="projects" className="min-h-screen py-20 px-4">
       <motion.h1
@@ -47,7 +50,7 @@ export default function Projects() {
         whileInView={{ opacity: 1, y: 0 }}
         className="text-6xl text-center mb-16"
       >
-        My Projects
+        {t.projects?.title || "My Projects"}
       </motion.h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
@@ -68,7 +71,9 @@ export default function Projects() {
             />
             <div className="p-6">
               <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-              <p className="text-white/70 mb-4">{project.description}</p>
+              <p className="text-white/70 mb-4">
+                {t.projects?.[project.descriptionKey]?.description || ""}
+              </p>
               <div className="flex gap-2 mb-4">
                 {project.tags.map((tag) => (
                   <span key={tag} className="px-3 py-1 rounded-full bg-white/10 text-sm">
@@ -79,9 +84,11 @@ export default function Projects() {
               <div className="flex justify-between items-center">
                 <a
                   href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors"
                 >
-                  Ver más <ArrowRight className="w-4 h-4" />
+                  {t.projects?.viewMore || "Ver más"} <ArrowRight className="w-4 h-4" />
                 </a>
                 <a
                   href={project.github}
@@ -102,7 +109,7 @@ export default function Projects() {
           whileHover={{ scale: 1.05 }}
           className="px-8 py-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
         >
-          More Projects
+          {t.projects?.moreProjects || "More Projects"}
         </motion.button>
       </div>
     </section>

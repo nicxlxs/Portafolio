@@ -1,0 +1,73 @@
+{
+  "header": {
+    "certifications": "Certificaciones",
+    "skills": "Habilidades",
+    "projects": "Proyectos",
+    "contact": "Contacto"
+  },
+  "aboutMe": {
+    "title": "About Me",
+    "description": "Soy un estudiante apasionado de ingeniería de software con un fuerte interés en el desarrollo web y la creación de soluciones innovadoras. Me encanta aprender nuevas tecnologías y aplicarlas en proyectos desafiantes.",
+    "downloadCV": "Descargar CV"
+  },
+  "certifications": {
+    "title": "Certificaciones",
+    "blockchain": {
+      "title": "Blockchain",
+      "description": "Especialización en tecnología Blockchain y contratos inteligentes"
+    },
+    "scrum": {
+      "title": "Scrum Master",
+      "description": "Certificación profesional en metodologías ágiles"
+    },
+    "english": {
+      "title": "Inglés",
+      "description": "Certificación de nivel avanzado en idioma inglés"
+    }
+  },
+  "skills": {
+    "title": "Habilidades",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "tools": "Herramientas"
+  },
+  "projects": {
+    "title": "My Projects",
+    "viewMore": "Ver más",
+    "moreProjects": "More Projects",
+    "cargasafe": {
+      "title": "CargaSafe",
+      "description": "Aplicación web desarrollada para gestionar proyectos domésticos de hidroponía."
+    },
+    "connectly": {
+      "title": "Connectly",
+      "description": "Aplicación web desarrollada para gestionar proyectos domésticos de hidroponía."
+    },
+    "nutrigain": {
+      "title": "NutriGain",
+      "description": "Aplicación de gestión de tareas con características colaborativas."
+    },
+    "smartgarden": {
+      "title": "Smart Garden",
+      "description": "Aplicación web desarrollada para gestionar proyectos domésticos de hidroponía."
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "interested": "¿Interesado en mí?",
+    "getInTouch": "No dudes en contactarme.",
+    "name": "Nombre",
+    "email": "Correo",
+    "message": "Mensaje",
+    "send": "Enviar"
+  },
+  "footer": {
+    "copyright": "Mi Portafolio. Todos los derechos reservados."
+  },
+  "mobileNav": {
+    "menu": "Menú",
+    "lightMode": "Modo Claro",
+    "darkMode": "Modo Oscuro",
+    "about": "About"
+  }
+}

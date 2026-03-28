@@ -1,14 +1,15 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useState } from "react"
 import { HomeIcon, Sun, Moon } from "lucide-react"
 import { useTheme } from "next-themes"
+import { useLanguage, useTranslations } from "@/contexts/LanguageContext"
 import MobileNav from "./mobile-nav"
 
 export default function Header() {
   const { theme, setTheme } = useTheme()
-  const [language, setLanguage] = useState("ES")
+  const { language, setLanguage } = useLanguage()
+  const t = useTranslations()
 
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId)
@@ -36,32 +37,32 @@ export default function Header() {
             onClick={() => scrollToSection("certifications")}
             className="text-gray-600 hover:text-gray-900 dark:text-white/70 dark:hover:text-white transition-colors"
           >
-            Certificaciones
+            {t.header?.certifications || "Certificaciones"}
           </button>
           <button
             onClick={() => scrollToSection("skills")}
             className="text-gray-600 hover:text-gray-900 dark:text-white/70 dark:hover:text-white transition-colors"
           >
-            Habilidades
+            {t.header?.skills || "Habilidades"}
           </button>
           <button
             onClick={() => scrollToSection("projects")}
             className="text-gray-600 hover:text-gray-900 dark:text-white/70 dark:hover:text-white transition-colors"
           >
-            Proyectos
+            {t.header?.projects || "Proyectos"}
           </button>
           <button
             onClick={() => scrollToSection("contact")}
             className="text-gray-600 hover:text-gray-900 dark:text-white/70 dark:hover:text-white transition-colors"
           >
-            Contacto
+            {t.header?.contact || "Contacto"}
           </button>
         </div>
 
         <div className="hidden md:flex items-center gap-4">
           <button
-            onClick={() => setLanguage((prev) => (prev === "ES" ? "EN" : "ES"))}
-            className="px-3 py-1 rounded-lg bg-gray-800 text-white hover:bg-black dark:bg-white/10 dark:text-white/90 text-sm font-medium dark:hover:bg-white/20 transition-colors"
+            onClick={() => setLanguage(language === "es" ? "en" : "es")}
+            className="px-3 py-1 rounded-lg bg-gray-800 text-white hover:bg-black dark:bg-white/10 dark:text-white/90 text-sm font-medium dark:hover:bg-white/20 transition-colors uppercase"
           >
             {language}
           </button>

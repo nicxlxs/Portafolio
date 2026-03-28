@@ -3,12 +3,15 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { Github, Linkedin, Instagram, Download } from "lucide-react"
+import { useTranslations } from "@/contexts/LanguageContext"
 
 const CV_CONTENT = `Nicolas Alejandro Vera Nuñez  
 Estudiante de Ingeniería de Software 
 ...` // Your full CV content here
 
 export default function AboutMe() {
+  const t = useTranslations()
+
   const handleDownloadCV = () => {
     // Create blob from CV content
     const blob = new Blob([CV_CONTENT], { type: "text/plain" })
@@ -39,11 +42,9 @@ export default function AboutMe() {
         </motion.div>
 
         <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} className="space-y-6">
-          <h2 className="text-4xl font-bold mb-4">About Me</h2>
+          <h2 className="text-4xl font-bold mb-4">{t.aboutMe?.title || "About Me"}</h2>
           <p className="text-lg text-white/70">
-            Soy un estudiante apasionado de ingeniería de software con un fuerte interés en el desarrollo web y la
-            creación de soluciones innovadoras. Me encanta aprender nuevas tecnologías y aplicarlas en proyectos
-            desafiantes.
+            {t.aboutMe?.description || "Soy un estudiante apasionado de ingeniería de software..."}
           </p>
 
           <div className="flex gap-4">
@@ -80,7 +81,7 @@ export default function AboutMe() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1A1A1A] hover:bg-[#2A2A2A] transition-colors"
           >
             <Download className="w-5 h-5" />
-            <span>Download CV</span>
+            <span>{t.aboutMe?.downloadCV || "Download CV"}</span>
           </a>
         </motion.div>
       </div>
