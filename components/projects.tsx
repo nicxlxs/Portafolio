@@ -35,7 +35,7 @@ const projects = [
     descriptionKey: "smartgarden",
     image: "/projects/smart-garden.png",
     tags: ["Angular", "Java", "MySQL"],
-    link: "#",
+    link: "https://smartgardenn.netlify.app/",
     github: "https://github.com/UPC-SmartGarden-SW56",
   },
 ]
@@ -48,7 +48,7 @@ export default function Projects() {
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        className="text-6xl text-center mb-16"
+        className="text-6xl text-center mb-16 text-gray-900 dark:text-white"
       >
         {t.projects?.title || "My Projects"}
       </motion.h1>
@@ -60,7 +60,7 @@ export default function Projects() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
-            className="group relative rounded-2xl bg-white/5 backdrop-blur-sm overflow-hidden"
+            className="group relative rounded-2xl bg-gray-100 dark:bg-white/5 backdrop-blur-sm overflow-hidden"
           >
             <Image
               src={project.image || "/placeholder.svg"}
@@ -70,13 +70,13 @@ export default function Projects() {
               className="w-full object-cover aspect-video"
             />
             <div className="p-6">
-              <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-              <p className="text-white/70 mb-4">
+              <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">{project.title}</h3>
+              <p className="text-gray-700 dark:text-white/70 mb-4">
                 {t.projects?.[project.descriptionKey]?.description || ""}
               </p>
               <div className="flex gap-2 mb-4">
                 {project.tags.map((tag) => (
-                  <span key={tag} className="px-3 py-1 rounded-full bg-white/10 text-sm">
+                  <span key={tag} className="px-3 py-1 rounded-full bg-gray-200 dark:bg-white/10 text-sm text-gray-900 dark:text-white">
                     {tag}
                   </span>
                 ))}
@@ -86,7 +86,7 @@ export default function Projects() {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors"
+                  className="inline-flex items-center gap-2 text-gray-700 dark:text-white/70 hover:text-gray-900 dark:hover:text-white transition-colors"
                 >
                   {t.projects?.viewMore || "Ver más"} <ArrowRight className="w-4 h-4" />
                 </a>
@@ -94,7 +94,7 @@ export default function Projects() {
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                  className="p-2 rounded-full bg-gray-200 dark:bg-white/10 hover:bg-gray-300 dark:hover:bg-white/20 transition-colors text-gray-900 dark:text-white"
                 >
                   <Github className="w-4 h-4" />
                 </a>
@@ -107,7 +107,7 @@ export default function Projects() {
       <div className="flex justify-center mt-12">
         <motion.button
           whileHover={{ scale: 1.05 }}
-          className="px-8 py-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+          className="px-8 py-3 rounded-full bg-gray-200 dark:bg-white/10 hover:bg-gray-300 dark:hover:bg-white/20 transition-colors text-gray-900 dark:text-white"
         >
           {t.projects?.moreProjects || "More Projects"}
         </motion.button>

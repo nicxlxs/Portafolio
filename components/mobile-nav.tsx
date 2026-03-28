@@ -77,13 +77,13 @@ export default function MobileNav() {
               <div className="absolute bottom-8 left-6 right-6 space-y-4">
                 <button
                   onClick={() => setLanguage(language === "es" ? "en" : "es")}
-                  className="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors uppercase"
+                  className="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors uppercase text-gray-900 dark:text-white"
                 >
                   {language}
                 </button>
                 <button
                   onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                  className="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors flex items-center justify-center gap-2"
+                  className="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors flex items-center justify-center gap-2 text-gray-900 dark:text-white"
                 >
                   {theme === "dark" ? (
                     <>

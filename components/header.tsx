@@ -62,13 +62,13 @@ export default function Header() {
         <div className="hidden md:flex items-center gap-4">
           <button
             onClick={() => setLanguage(language === "es" ? "en" : "es")}
-            className="px-3 py-1 rounded-lg bg-gray-800 text-white hover:bg-black dark:bg-white/10 dark:text-white/90 text-sm font-medium dark:hover:bg-white/20 transition-colors uppercase"
+            className="px-3 py-1 rounded-lg bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-white/10 dark:text-white/90 text-sm font-medium dark:hover:bg-white/20 transition-colors uppercase"
           >
             {language}
           </button>
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="p-2 rounded-full bg-gray-800 dark:bg-white/10 text-white hover:bg-gray-900 dark:hover:bg-white/20 transition-colors"
+            className="p-2 rounded-full bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-white/10 dark:text-white dark:hover:bg-white/20 transition-colors"
             aria-label="Cambiar tema"
           >
             {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}

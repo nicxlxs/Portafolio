@@ -144,8 +144,8 @@ export default function Skills() {
   return (
     <section id="skills" className="min-h-screen flex flex-col items-center justify-center p-4">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
-        <h2 className="text-2xl mb-2">{t.skills?.title ? "These are my" : "These are my"}</h2>
-        <h1 className="text-6xl md:text-8xl font-bold mb-8">{t.skills?.title || "SKILLS"}</h1>
+        <h2 className="text-2xl mb-2 text-gray-900 dark:text-white">{t.skills?.title ? "These are my" : "These are my"}</h2>
+        <h1 className="text-6xl md:text-8xl font-bold mb-8 text-gray-900 dark:text-white">{t.skills?.title || "SKILLS"}</h1>
         <div className="flex flex-wrap gap-4 justify-center">
           {Object.keys(skillCategories).map((cat) => (
             <button

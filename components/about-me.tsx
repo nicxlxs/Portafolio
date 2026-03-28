@@ -42,8 +42,8 @@ export default function AboutMe() {
         </motion.div>
 
         <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} className="space-y-6">
-          <h2 className="text-4xl font-bold mb-4">{t.aboutMe?.title || "About Me"}</h2>
-          <p className="text-lg text-white/70">
+          <h2 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">{t.aboutMe?.title || "About Me"}</h2>
+          <p className="text-lg text-gray-700 dark:text-white/70">
             {t.aboutMe?.description || "Soy un estudiante apasionado de ingeniería de software..."}
           </p>
 

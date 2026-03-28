@@ -37,15 +37,15 @@
     "moreProjects": "More Projects",
     "cargasafe": {
       "title": "CargaSafe",
-      "description": "Aplicación web desarrollada para gestionar proyectos domésticos de hidroponía."
+      "description": "Aplicación web para la gestión y monitoreo seguro de cargas, que permite rastrear envíos, controlar su estado y garantizar la integridad durante el transporte."
     },
     "connectly": {
       "title": "Connectly",
-      "description": "Aplicación web desarrollada para gestionar proyectos domésticos de hidroponía."
+      "description": "Red social para conectar a personas con intereses similares y fomentar la colaboración en proyectos."
     },
     "nutrigain": {
       "title": "NutriGain",
-      "description": "Aplicación de gestión de tareas con características colaborativas."
+      "description": "Aplicación web para el entrenamiento físico y la nutrición personalizada, que utiliza gamificación para motivar a los usuarios a alcanzar sus objetivos de salud mediante rutinas, planes alimenticios y seguimiento de progreso. "
     },
     "smartgarden": {
       "title": "Smart Garden",
