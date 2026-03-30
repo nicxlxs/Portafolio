@@ -1,47 +1,19 @@
 "use client"
 
+import Link from "next/link"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { ArrowRight, Github } from "lucide-react"
 import { useTranslations } from "@/contexts/LanguageContext"
-
-const projects = [
-  {
-    title: "CargaSafe",
-    descriptionKey: "cargasafe",
-    image: "/projects/cargasafe.png",
-    tags: ["Angular", "Java", "PostgreSQL"],
-    link: "https://carga-safe.web.app/",
-    github: "https://github.com/Los-Parkers-IoT/iot-solutions-development-cargasafe-frontend",
-  },
-  {
-    title: "Connectly",
-    descriptionKey: "connectly",
-    image: "/projects/connectly.png",
-    tags: ["Python", "Tailwind", "MySQL"],
-    link: "https://connectly-ywvg.onrender.com/login",
-    github: "https://github.com/UPC-SmartGarden-SW56",
-  },
-  {
-    title: "NutriGain",
-    descriptionKey: "nutrigain",
-    image: "/projects/nutrigain.png",
-    tags: ["Angular", "Java", "MySQL"],
-    link: "https://front-azl2.vercel.app/",
-    github: "https://github.com/UPC-NutriGain",
-  },
-  {
-    title: "Smart Garden",
-    descriptionKey: "smartgarden",
-    image: "/projects/smart-garden.png",
-    tags: ["Angular", "Java", "MySQL"],
-    link: "https://smartgardenn.netlify.app/",
-    github: "https://github.com/UPC-SmartGarden-SW56",
-  },
-]
+import { projectsData } from "@/lib/projects-data"
 
 export default function Projects() {
   const t = useTranslations()
+  
+  // Get only featured projects
+  const featuredProjects = projectsData.filter((p) => p.featured).slice(0, 4)
+  const isSpanish = typeof t === "object" && "es" in t ? true : false
+  const description = isSpanish ? "es" : "en"
 
   return (
     <section id="projects" className="min-h-screen py-20 px-4">
@@ -54,9 +26,9 @@ export default function Projects() {
       </motion.h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-        {projects.map((project, index) => (
+        {featuredProjects.map((project, index) => (
           <motion.div
-            key={index}
+            key={project.id}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
@@ -67,12 +39,12 @@ export default function Projects() {
               alt={project.title}
               width={600}
               height={300}
-              className="w-full object-cover aspect-video"
+              className="w-full object-cover aspect-video group-hover:scale-110 transition-transform duration-300"
             />
             <div className="p-6">
               <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">{project.title}</h3>
               <p className="text-gray-700 dark:text-white/70 mb-4">
-                {t.projects?.[project.descriptionKey]?.description || ""}
+                {project.description[description as keyof typeof project.description]}
               </p>
               <div className="flex gap-2 mb-4">
                 {project.tags.map((tag) => (
@@ -105,12 +77,14 @@ export default function Projects() {
       </div>
 
       <div className="flex justify-center mt-12">
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          className="px-8 py-3 rounded-full bg-gray-200 dark:bg-white/10 hover:bg-gray-300 dark:hover:bg-white/20 transition-colors text-gray-900 dark:text-white"
-        >
-          {t.projects?.moreProjects || "More Projects"}
-        </motion.button>
+        <Link href="/projects">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            className="px-8 py-3 rounded-full bg-gray-200 dark:bg-white/10 hover:bg-gray-300 dark:hover:bg-white/20 transition-colors text-gray-900 dark:text-white font-semibold"
+          >
+            {isSpanish ? "Ver todos los proyectos" : "View All Projects"}
+          </motion.button>
+        </Link>
       </div>
     </section>
   )
