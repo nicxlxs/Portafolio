@@ -127,6 +127,196 @@ const certificationsData = {
       },
     ],
   },
+  databases: {
+    icon: <Code className="w-6 h-6" />,
+    title: "Databases",
+    description: "Especialización en diseño e implementación de bases de datos relacionales",
+    certificates: [
+      {
+        title: "Databases for Data Scientists",
+        institution: "University of Colorado Boulder",
+        date: "February 2026",
+        credential: "RMKO0LCLMUGT",
+        image:
+          "https://z6toxlgp9dnnpx80.public.blob.vercel-storage.com/certifications/coursera_sql/Coursera%20RMKO0LCLMUGT.png",
+        verifyUrl: "https://coursera.org/verify/specialization/RMKO0LCLMUGT",
+      },
+      {
+        title: "The Structured Query Language (SQL)",
+        institution: "University of Colorado Boulder",
+        date: "January 2026",
+        credential: "VTVNU2J64MK8",
+        image:
+          "https://z6toxlgp9dnnpx80.public.blob.vercel-storage.com/certifications/coursera_sql/Coursera%20VTVNU2J64MK8.png",
+        verifyUrl: "https://coursera.org/verify/VTVNU2J64MK8",
+      },
+      {
+        title: "Advanced Topics and Future Trends in Database Technologies",
+        institution: "University of Colorado Boulder",
+        date: "February 2026",
+        credential: "N0D1CG8IFIWJ",
+        image:
+          "https://z6toxlgp9dnnpx80.public.blob.vercel-storage.com/certifications/coursera_sql/Coursera%20N0D1CG8IFIWJ.png",
+        verifyUrl: "https://coursera.org/verify/N0D1CG8IFIWJ",
+      },
+      {
+        title: "Relational Database Design",
+        institution: "University of Colorado Boulder",
+        date: "January 2026",
+        credential: "OGA4S2HPKH51",
+        image:
+          "https://z6toxlgp9dnnpx80.public.blob.vercel-storage.com/certifications/coursera_sql/Coursera%20OGA4S2HPKH51.png",
+        verifyUrl: "https://coursera.org/verify/OGA4S2HPKH51",
+      },
+    ],
+  },
+  excel: {
+    icon: <Code className="w-6 h-6" />,
+    title: "Excel",
+    description: "Certificaciones en Microsoft Excel y análisis de datos",
+    certificates: [
+      {
+        title: "Microsoft Excel Skills for Data Analytics and Visualization",
+        institution: "Coursera",
+        date: "2026",
+        credential: "65I94ADV4LMI",
+        image:
+          "https://z6toxlgp9dnnpx80.public.blob.vercel-storage.com/certifications/coursera_excel/Coursera%2065I94ADV4LMI.jpg",
+        verifyUrl: "https://coursera.org/verify/65I94ADV4LMI",
+      },
+      {
+        title: "Data Processing with Excel",
+        institution: "Coursera",
+        date: "2026",
+        credential: "ICER9JF4GY83",
+        image:
+          "https://z6toxlgp9dnnpx80.public.blob.vercel-storage.com/certifications/coursera_excel/Coursera%20ICER9JF4GY83.jpg",
+        verifyUrl: "https://coursera.org/verify/ICER9JF4GY83",
+      },
+    ],
+  },
+  python: {
+    icon: <Code className="w-6 h-6" />,
+    title: "Python",
+    description: "Certificaciones en Python y desarrollo de aplicaciones",
+    certificates: [
+      {
+        title: "Python for Everybody",
+        institution: "Coursera",
+        date: "2026",
+        credential: "5TZ10Q22UC8Q",
+        image:
+          "https://z6toxlgp9dnnpx80.public.blob.vercel-storage.com/certifications/coursera_python/Coursera%205TZ10Q22UC8Q.jpg",
+        verifyUrl: "https://coursera.org/verify/5TZ10Q22UC8Q",
+      },
+      {
+        title: "Python Data Structures",
+        institution: "Coursera",
+        date: "2026",
+        credential: "GUB85UFKD8EK",
+        image:
+          "https://z6toxlgp9dnnpx80.public.blob.vercel-storage.com/certifications/coursera_python/Coursera%20GUB85UFKD8EK.jpg",
+        verifyUrl: "https://coursera.org/verify/GUB85UFKD8EK",
+      },
+      {
+        title: "Using Python to Access Web Data",
+        institution: "Coursera",
+        date: "2026",
+        credential: "O19MFW7MUIFY",
+        image:
+          "https://z6toxlgp9dnnpx80.public.blob.vercel-storage.com/certifications/coursera_python/Coursera%20O19MFW7MUIFY.jpg",
+        verifyUrl: "https://coursera.org/verify/O19MFW7MUIFY",
+      },
+      {
+        title: "Using Databases with Python",
+        institution: "Coursera",
+        date: "2026",
+        credential: "W3LXBNP92GE9",
+        image:
+          "https://z6toxlgp9dnnpx80.public.blob.vercel-storage.com/certifications/coursera_python/Coursera%20W3LXBNP92GE9.jpg",
+        verifyUrl: "https://coursera.org/verify/W3LXBNP92GE9",
+      },
+      {
+        title: "Capstone Project - Building a Data Dashboard",
+        institution: "Coursera",
+        date: "2026",
+        credential: "X1YRDUPDMEVM",
+        image:
+          "https://z6toxlgp9dnnpx80.public.blob.vercel-storage.com/certifications/coursera_python/Coursera%20X1YRDUPDMEVM.jpg",
+        verifyUrl: "https://coursera.org/verify/X1YRDUPDMEVM",
+      },
+      {
+        title: "Python Programming Specialization",
+        institution: "Coursera",
+        date: "2026",
+        credential: "X8JWMPLMNAWA",
+        image:
+          "https://z6toxlgp9dnnpx80.public.blob.vercel-storage.com/certifications/coursera_python/Coursera%20X8JWMPLMNAWA.jpg",
+        verifyUrl: "https://coursera.org/verify/X8JWMPLMNAWA",
+      },
+    ],
+  },
+  google_cloud: {
+    icon: <Code className="w-6 h-6" />,
+    title: "Google Cloud",
+    description: "Certificaciones en Google Cloud Platform y soluciones en la nube",
+    certificates: [
+      {
+        title: "Google Cloud Architecture Essentials",
+        institution: "Coursera",
+        date: "2026",
+        credential: "2K7STSPW9NG9",
+        image:
+          "https://z6toxlgp9dnnpx80.public.blob.vercel-storage.com/certifications/coursera_google_cloud/Coursera%202K7STSPW9NG9.jpg",
+        verifyUrl: "https://coursera.org/verify/2K7STSPW9NG9",
+      },
+      {
+        title: "Preparing for Google Cloud Associate Cloud Engineer Exam",
+        institution: "Coursera",
+        date: "2026",
+        credential: "8EFR72W76FY7",
+        image:
+          "https://z6toxlgp9dnnpx80.public.blob.vercel-storage.com/certifications/coursera_google_cloud/Coursera%208EFR72W76FY7.jpg",
+        verifyUrl: "https://coursera.org/verify/8EFR72W76FY7",
+      },
+      {
+        title: "Google Cloud Data Engineer Professional",
+        institution: "Coursera",
+        date: "2026",
+        credential: "8UCMQB3GRK88",
+        image:
+          "https://z6toxlgp9dnnpx80.public.blob.vercel-storage.com/certifications/coursera_google_cloud/Coursera%208UCMQB3GRK88.jpg",
+        verifyUrl: "https://coursera.org/verify/8UCMQB3GRK88",
+      },
+      {
+        title: "Google Cloud Infrastructure Core Services",
+        institution: "Coursera",
+        date: "2026",
+        credential: "HU2CYAJLQ3ZJ",
+        image:
+          "https://z6toxlgp9dnnpx80.public.blob.vercel-storage.com/certifications/coursera_google_cloud/Coursera%20HU2CYAJLQ3ZJ.jpg",
+        verifyUrl: "https://coursera.org/verify/HU2CYAJLQ3ZJ",
+      },
+      {
+        title: "Google Cloud Security and Compliance",
+        institution: "Coursera",
+        date: "2026",
+        credential: "L18DNTNPWUR0",
+        image:
+          "https://z6toxlgp9dnnpx80.public.blob.vercel-storage.com/certifications/coursera_google_cloud/Coursera%20L18DNTNPWUR0.jpg",
+        verifyUrl: "https://coursera.org/verify/L18DNTNPWUR0",
+      },
+      {
+        title: "Google Cloud Professional Data Engineer",
+        institution: "Coursera",
+        date: "2026",
+        credential: "Q9OZSETLWIX0",
+        image:
+          "https://z6toxlgp9dnnpx80.public.blob.vercel-storage.com/certifications/coursera_google_cloud/Coursera%20Q9OZSETLWIX0.jpg",
+        verifyUrl: "https://coursera.org/verify/Q9OZSETLWIX0",
+      },
+    ],
+  },
 }
 
 export default function Certifications() {
