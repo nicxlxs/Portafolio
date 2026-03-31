@@ -2,8 +2,10 @@
 
 import { motion } from "framer-motion"
 import { HomeIcon, Sun, Moon } from "lucide-react"
+import Link from "next/link"
 import { useTheme } from "next-themes"
 import { useLanguage, useTranslations } from "@/contexts/LanguageContext"
+import { usePathname } from "next/navigation"
 import MobileNav from "./mobile-nav"
 import { useEffect, useState } from "react"
 
@@ -12,6 +14,7 @@ export default function Header() {
   const { language, setLanguage } = useLanguage()
   const t = useTranslations()
   const [mounted, setMounted] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     setMounted(true)
@@ -24,6 +27,21 @@ export default function Header() {
     }
   }
 
+  const handleProjectsClick = () => {
+    if (pathname === "/projects") {
+      return // Already on projects page
+    }
+    scrollToSection("projects")
+  }
+
+  const handleHomeClick = () => {
+    if (pathname === "/projects") {
+      window.location.href = "/"
+    } else {
+      scrollToSection("about")
+    }
+  }
+
   return (
     <motion.header
       initial={{ y: -20, opacity: 0 }}
@@ -32,7 +50,7 @@ export default function Header() {
     >
       <nav className="flex items-center justify-between w-full max-w-6xl md:justify-center gap-4 md:gap-8 px-4 md:px-8 py-2 rounded-full bg-gray-100/90 dark:bg-white/5 backdrop-blur-sm border border-gray-200 dark:border-white/10">
         <button
-          onClick={() => scrollToSection("about")}
+          onClick={handleHomeClick}
           className="text-gray-800 hover:text-black dark:text-white/70 dark:hover:text-white transition-colors"
         >
           <HomeIcon className="w-5 h-5" />
@@ -40,25 +58,52 @@ export default function Header() {
 
         <div className="hidden md:flex items-center gap-8">
           <button
-            onClick={() => scrollToSection("certifications")}
+            onClick={() => {
+              if (pathname === "/projects") {
+                window.location.href = "/#certifications"
+              } else {
+                scrollToSection("certifications")
+              }
+            }}
             className="text-gray-600 hover:text-gray-900 dark:text-white/70 dark:hover:text-white transition-colors"
           >
             {t.header?.certifications || "Certificaciones"}
           </button>
           <button
-            onClick={() => scrollToSection("skills")}
+            onClick={() => {
+              if (pathname === "/projects") {
+                window.location.href = "/#skills"
+              } else {
+                scrollToSection("skills")
+              }
+            }}
             className="text-gray-600 hover:text-gray-900 dark:text-white/70 dark:hover:text-white transition-colors"
           >
             {t.header?.skills || "Habilidades"}
           </button>
+          {pathname === "/projects" ? (
+            <button
+              disabled
+              className="text-gray-600 dark:text-white/70 opacity-60 cursor-default"
+            >
+              {t.header?.projects || "Proyectos"}
+            </button>
+          ) : (
+            <button
+              onClick={handleProjectsClick}
+              className="text-gray-600 hover:text-gray-900 dark:text-white/70 dark:hover:text-white transition-colors"
+            >
+              {t.header?.projects || "Proyectos"}
+            </button>
+          )}
           <button
-            onClick={() => scrollToSection("projects")}
-            className="text-gray-600 hover:text-gray-900 dark:text-white/70 dark:hover:text-white transition-colors"
-          >
-            {t.header?.projects || "Proyectos"}
-          </button>
-          <button
-            onClick={() => scrollToSection("contact")}
+            onClick={() => {
+              if (pathname === "/projects") {
+                window.location.href = "/#contact"
+              } else {
+                scrollToSection("contact")
+              }
+            }}
             className="text-gray-600 hover:text-gray-900 dark:text-white/70 dark:hover:text-white transition-colors"
           >
             {t.header?.contact || "Contacto"}
