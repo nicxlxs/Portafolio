@@ -53,6 +53,19 @@ export const projectsData: Project[] = [
     featured: true
   },
   {
+    id: 53,
+    title: "GeOps",
+    description: {
+      es: "Aplicación web para la gestión y operación de actividades geoespaciales, con una interfaz moderna y fácil de usar.",
+      en: "Web application for managing and operating geospatial activities, with a modern and easy-to-use interface."
+    },
+    image: "/projects/geops.png",
+    tags: ["Next.js", "TypeScript", "Vercel"],
+    link: "https://geops-app-web.vercel.app",
+    github: "https://geops-app-web.vercel.app/",
+    featured: true
+  },
+  {
     id: 4,
     title: "Smart Garden",
     description: {
@@ -62,8 +75,7 @@ export const projectsData: Project[] = [
     image: "/projects/smart-garden.png",
     tags: ["Angular", "Java", "MySQL"],
     link: "https://smartgardenn.netlify.app/",
-    github: "https://github.com/UPC-SmartGarden-SW56",
-    featured: true
+    github: "https://github.com/UPC-SmartGarden-SW56"
   },
   {
     id: 5,
