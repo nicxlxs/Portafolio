@@ -48,6 +48,18 @@ const skillCategories = {
         dark: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/nextjs%20modo%20negro-hLrBs6VYw68txlxX2DRYkoV5uqgfTX.png",
       },
     },
+    {
+      name: "TypeScript",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/typescript/typescript-original.svg",
+    },
+    {
+      name: "Angular",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/angular/angular-original.svg",
+    },
+    {
+      name: "Tailwind CSS",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/tailwindcss/tailwindcss-original.svg",
+    },
   ],
   Backend: [
     {
@@ -73,6 +85,26 @@ const skillCategories = {
           "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/springboot%20modo%20blanco-sIwI4pEyddXlgNgiJSKkghFb5ROL2R.png",
         dark: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/springboot%20modo%20negro-DPslBaUPFa1DrZdTYDwwJGlV7CZR9h.png",
       },
+    },
+    {
+      name: "Java",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/java/java-original.svg",
+    },
+    {
+      name: "Python",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/python/python-original.svg",
+    },
+    {
+      name: "C++",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/cplusplus/cplusplus-original.svg",
+    },
+    {
+      name: "MySQL",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/mysql/mysql-original.svg",
+    },
+    {
+      name: "PostgreSQL",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/postgresql/postgresql-original.svg",
     },
   ],
   Tools: [
@@ -108,6 +140,14 @@ const skillCategories = {
         dark: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/icons8-visual-studio-500%20(1)-ux45jX5u6C25akumfF6SETmh4BTA6u.png",
       },
     },
+    {
+      name: "GitHub",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/github/github-original.svg",
+    },
+    {
+      name: "Vercel",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/vercel/vercel-original.svg",
+    },
   ],
 }
 
@@ -118,7 +158,6 @@ export default function Skills() {
   const [category, setCategory] = useState<keyof typeof skillCategories>("Frontend")
   const [isMobile, setIsMobile] = useState(false)
   const [mounted, setMounted] = useState(false)
-  const [paused, setPaused] = useState(false)
   const { resolvedTheme } = useTheme()
   const rotation = useMotionValue(0)
 
@@ -133,19 +172,18 @@ export default function Skills() {
     return () => window.removeEventListener("resize", checkMobile)
   }, [])
 
-  // The whole wheel spins around the Y axis; pausing on hover lets you read a card.
+  // The whole wheel spins continuously around the Y axis.
   useAnimationFrame((_, delta) => {
-    if (paused) return
     rotation.set((rotation.get() + (ROTATION_SPEED * delta) / 1000) % 360)
   })
 
   const skills = skillCategories[category]
-  const cardWidth = isMobile ? 84 : 132
+  const cardWidth = isMobile ? 76 : 132
   const cardHeight = isMobile ? 116 : 180
-  const gap = isMobile ? 18 : 40
+  const gap = isMobile ? 10 : 40
   // Radius so neighbouring cards never overlap, whatever the number of skills.
   const radius = Math.max(
-    isMobile ? 110 : 190,
+    isMobile ? 100 : 190,
     (cardWidth + gap) / (2 * Math.tan(Math.PI / skills.length)),
   )
   const isDark = resolvedTheme === "dark"
@@ -179,10 +217,6 @@ export default function Skills() {
           height: cardHeight + 120,
           perspective: isMobile ? 800 : 1400,
         }}
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-        onTouchStart={() => setPaused(true)}
-        onTouchEnd={() => setPaused(false)}
       >
         <div style={{ transformStyle: "preserve-3d", transform: "rotateX(-12deg)" }} className="relative">
           <motion.div
