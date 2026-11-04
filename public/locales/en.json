@@ -4,12 +4,16 @@
     "skills": "Skills",
     "projects": "Projects",
     "contact": "Contact",
-    "changeTheme": "Change theme"
+    "changeTheme": "Change theme",
+    "home": "Home",
+    "language": "Change language"
   },
   "aboutMe": {
     "title": "About Me",
     "description": "I am a passionate software engineering student with a strong interest in web development and creating innovative solutions. I love learning new technologies and applying them to challenging projects.",
-    "downloadCV": "Download CV"
+    "downloadCV": "Download CV",
+    "profileAlt": "Profile photo",
+    "cvFileName": "Nicolas_Vera_CV"
   },
   "certifications": {
     "title": "Certifications",
@@ -17,17 +21,50 @@
     "previousCert": "Previous certificate",
     "nextCert": "Next certificate",
     "verify": "Verify",
-    "blockchain": {
-      "title": "Blockchain",
-      "description": "Specialization in Blockchain technology and smart contracts"
+    "credential": "Credential",
+    "categories": {
+      "blockchain": {
+        "title": "Blockchain",
+        "description": "Specialization in Blockchain technology and smart contracts"
+      },
+      "scrum": {
+        "title": "Scrum Master",
+        "description": "Professional certification in agile methodologies"
+      },
+      "english": {
+        "title": "English",
+        "description": "English as a foreign language certification"
+      },
+      "databases": {
+        "title": "Databases",
+        "description": "Specialization in relational database design and implementation"
+      },
+      "excel": {
+        "title": "Excel",
+        "description": "Microsoft Excel and data analysis certifications"
+      },
+      "python": {
+        "title": "Python",
+        "description": "Python and application development certifications"
+      },
+      "googleCloud": {
+        "title": "Google Cloud",
+        "description": "Google Cloud Platform and cloud solutions certifications"
+      }
     },
-    "scrum": {
-      "title": "Scrum Master",
-      "description": "Professional certification in agile methodologies"
-    },
-    "english": {
-      "title": "English",
-      "description": "Advanced level certification in English language"
+    "months": {
+      "January": "January",
+      "February": "February",
+      "March": "March",
+      "April": "April",
+      "May": "May",
+      "June": "June",
+      "July": "July",
+      "August": "August",
+      "September": "September",
+      "October": "October",
+      "November": "November",
+      "December": "December"
     }
   },
   "skills": {
@@ -35,28 +72,25 @@
     "theseAreMy": "These are my",
     "frontend": "Frontend",
     "backend": "Backend",
-    "tools": "Tools"
+    "tools": "Tools",
+    "categories": {
+      "Frontend": "Frontend",
+      "Backend": "Backend",
+      "Tools": "Tools"
+    }
   },
   "projects": {
     "title": "My Projects",
     "viewMore": "View More",
     "moreProjects": "More Projects",
-    "cargasafe": {
-      "title": "CargaSafe",
-      "description": "Web application for the secure management and monitoring of cargo, allowing you to track shipments, monitor their status, and ensure their integrity during transport."
-    },
-    "connectly": {
-      "title": "Connectly",
-      "description": "Social network to connect people with similar interests and foster collaboration on projects."
-    },
-    "nutrigain": {
-      "title": "NutriGain",
-      "description": "Web application for personalized fitness and nutrition training, using gamification to motivate users to achieve their health goals through routines, meal plans, and progress tracking."
-    },
-    "smartgarden": {
-      "title": "Smart Garden",
-      "description": "Web application developed to manage domestic hydroponics projects."
-    }
+    "viewAll": "View All Projects",
+    "found": "projects found",
+    "foundSingular": "project found",
+    "search": "Search projects...",
+    "all": "All",
+    "none": "No projects found",
+    "previous": "Previous",
+    "next": "Next"
   },
   "contact": {
     "title": "Contact",
@@ -65,7 +99,11 @@
     "name": "Name",
     "email": "Email",
     "message": "Message",
-    "send": "Send"
+    "send": "Send",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "you@email.com",
+    "messagePlaceholder": "Write your message...",
+    "subject": "Contact from your portfolio"
   },
   "footer": {
     "copyright": "My Portfolio. All rights reserved."

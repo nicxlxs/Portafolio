@@ -4,13 +4,14 @@ import { useState, useMemo } from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { ArrowRight, Github, Search } from "lucide-react"
-import { useTranslations } from "@/contexts/LanguageContext"
+import { useLanguage, useTranslations } from "@/contexts/LanguageContext"
 import { projectsData } from "@/lib/projects-data"
 
 const PROJECTS_PER_PAGE = 12
 
 export default function ProjectsPage() {
   const t = useTranslations()
+  const { language } = useLanguage()
   const [currentPage, setCurrentPage] = useState(1)
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedTag, setSelectedTag] = useState<string | null>(null)
@@ -46,8 +47,7 @@ export default function ProjectsPage() {
     startIndex + PROJECTS_PER_PAGE
   )
 
-  const isSpanish = typeof t === "object" && "es" in t ? true : false
-  const description = isSpanish ? "es" : "en"
+  const description = language
 
   return (
     <section className="min-h-screen py-20 px-4">
@@ -58,10 +58,10 @@ export default function ProjectsPage() {
       >
         {/* Header */}
         <h1 className="text-6xl font-bold text-center mb-4 text-gray-900 dark:text-white">
-          {t.projects?.title || "Mis Proyectos"}
+          {t.projects?.title}
         </h1>
         <p className="text-center text-gray-700 dark:text-white/70 mb-12 text-lg">
-          {filteredProjects.length} {filteredProjects.length === 1 ? "proyecto" : "proyectos"} encontrados
+          {filteredProjects.length} {filteredProjects.length === 1 ? t.projects?.foundSingular : t.projects?.found}
         </p>
 
         {/* Search Bar */}
@@ -70,13 +70,13 @@ export default function ProjectsPage() {
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
               type="text"
-              placeholder={isSpanish ? "Buscar proyectos..." : "Search projects..."}
+              placeholder={t.projects?.search}
               value={searchTerm}
               onChange={(e) => {
                 setSearchTerm(e.target.value)
                 setCurrentPage(1)
               }}
-              className="w-full pl-12 pr-4 py-3 rounded-lg bg-gray-100 dark:bg-white/10 border border-gray-200 dark:border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white"
+              className="w-full pl-12 pr-4 py-3 rounded-lg bg-gray-100 dark:bg-white/10 border border-gray-200 dark:border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-white/40"
             />
           </div>
         </div>
@@ -95,7 +95,7 @@ export default function ProjectsPage() {
                 : "bg-gray-200 dark:bg-white/10 text-gray-900 dark:text-white hover:bg-gray-300 dark:hover:bg-white/20"
             }`}
           >
-            {isSpanish ? "Todos" : "All"}
+            {t.projects?.all}
           </motion.button>
           {allTags.map((tag) => (
             <motion.button
@@ -143,7 +143,7 @@ export default function ProjectsPage() {
                   </h3>
 
                   <p className="text-gray-700 dark:text-white/70 mb-4 text-sm line-clamp-2">
-                    {project.description[description as keyof typeof project.description]}
+                    {project.description[description]}
                   </p>
 
                   <div className="flex flex-wrap gap-2 mb-4">
@@ -168,7 +168,7 @@ export default function ProjectsPage() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors text-sm font-medium"
                     >
-                      {isSpanish ? "Ver más" : "View More"} <ArrowRight className="w-4 h-4" />
+                      {t.projects?.viewMore} <ArrowRight className="w-4 h-4" />
                     </a>
                     <a
                       href={project.github}
@@ -186,7 +186,7 @@ export default function ProjectsPage() {
         ) : (
           <div className="text-center py-20">
             <p className="text-gray-600 dark:text-white/60 text-lg">
-              {isSpanish ? "No se encontraron proyectos" : "No projects found"}
+              {t.projects?.none}
             </p>
           </div>
         )}
@@ -200,7 +200,7 @@ export default function ProjectsPage() {
               onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
               className="px-6 py-2 rounded-lg bg-gray-200 dark:bg-white/10 hover:bg-gray-300 dark:hover:bg-white/20 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-gray-900 dark:text-white"
             >
-              {isSpanish ? "Anterior" : "Previous"}
+              {t.projects?.previous}
             </motion.button>
 
             <div className="flex gap-2">
@@ -226,7 +226,7 @@ export default function ProjectsPage() {
               onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
               className="px-6 py-2 rounded-lg bg-gray-200 dark:bg-white/10 hover:bg-gray-300 dark:hover:bg-white/20 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-gray-900 dark:text-white"
             >
-              {isSpanish ? "Siguiente" : "Next"}
+              {t.projects?.next}
             </motion.button>
           </div>
         )}

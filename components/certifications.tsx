@@ -1,16 +1,28 @@
 "use client"
 
+import type React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import { useState, useEffect } from "react"
 import { GraduationCap, Code, Languages, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react"
 import { useTranslations } from "@/contexts/LanguageContext"
 
-const certificationsData = {
+interface Certificate {
+  title: string
+  institution?: string
+  date: string
+  image: string
+  credential?: string
+  code?: string
+  verifyUrl?: string
+}
+
+const certificationsData: Record<
+  "blockchain" | "scrum" | "english" | "databases" | "excel" | "python" | "googleCloud",
+  { icon: React.ReactNode; certificates: Certificate[] }
+> = {
   blockchain: {
     icon: <Code className="w-6 h-6" />,
-    title: "Blockchain",
-    description: "Especialización en tecnología Blockchain y contratos inteligentes",
     certificates: [
       {
         title: "Blockchain Specialization",
@@ -55,8 +67,6 @@ const certificationsData = {
   },
   scrum: {
     icon: <GraduationCap className="w-6 h-6" />,
-    title: "Scrum Master",
-    description: "Certificación profesional en metodologías ágiles",
     certificates: [
       {
         title: "Scrum Master Certification",
@@ -98,8 +108,6 @@ const certificationsData = {
   },
   english: {
     icon: <Languages className="w-6 h-6" />,
-    title: "Inglés",
-    description: "Certificación en inglés como lengua extranjera",
     certificates: [
       {
         title: "Advanced Phase",
@@ -129,8 +137,6 @@ const certificationsData = {
   },
   databases: {
     icon: <Code className="w-6 h-6" />,
-    title: "Databases",
-    description: "Especialización en diseño e implementación de bases de datos relacionales",
     certificates: [
       {
         title: "Databases for Data Scientists",
@@ -172,8 +178,6 @@ const certificationsData = {
   },
   excel: {
     icon: <Code className="w-6 h-6" />,
-    title: "Excel",
-    description: "Certificaciones en Microsoft Excel y análisis de datos",
     certificates: [
       {
         title: "Microsoft Excel Skills for Data Analytics and Visualization",
@@ -197,8 +201,6 @@ const certificationsData = {
   },
   python: {
     icon: <Code className="w-6 h-6" />,
-    title: "Python",
-    description: "Certificaciones en Python y desarrollo de aplicaciones",
     certificates: [
       {
         title: "Python for Everybody",
@@ -256,10 +258,8 @@ const certificationsData = {
       },
     ],
   },
-  google_cloud: {
+  googleCloud: {
     icon: <Code className="w-6 h-6" />,
-    title: "Google Cloud",
-    description: "Certificaciones en Google Cloud Platform y soluciones en la nube",
     certificates: [
       {
         title: "Google Cloud Architecture Essentials",
@@ -321,6 +321,8 @@ const certificationsData = {
 
 export default function Certifications() {
   const t = useTranslations()
+  const formatDate = (date: string) =>
+    date.replace(/^[A-Za-z]+/, (month) => t.certifications?.months?.[month] ?? month)
   const [selectedCategory, setSelectedCategory] = useState<keyof typeof certificationsData>("blockchain")
   const [selectedCert, setSelectedCert] = useState<number>(0)
   const [direction, setDirection] = useState<number>(0)
@@ -344,6 +346,8 @@ export default function Certifications() {
     setSelectedCert((prev) => (prev + 1) % certificationsData[selectedCategory].certificates.length)
   }
 
+  const currentCert = certificationsData[selectedCategory].certificates[selectedCert]
+
   const slideVariants = {
     enter: (direction: number) => ({
       x: direction > 0 ? 1000 : -1000,
@@ -364,9 +368,9 @@ export default function Certifications() {
   return (
     <section id="certifications" className="min-h-screen flex flex-col items-center justify-center py-20 px-4">
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">{t.certifications?.title || "Certificaciones"}</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">{t.certifications?.title}</h2>
         <p className="text-gray-700 dark:text-gray-400 max-w-2xl mx-auto">
-          {t.certifications?.subtitle || "Certificaciones profesionales en tecnología, metodologías ágiles e idiomas"}
+          {t.certifications?.subtitle}
         </p>
       </motion.div>
 
@@ -386,7 +390,7 @@ export default function Certifications() {
               }`}
             >
               {value.icon}
-              {value.title}
+              {t.certifications?.categories?.[key]?.title ?? key}
             </button>
           ))}
         </div>
@@ -424,7 +428,7 @@ export default function Certifications() {
                           {certificationsData[selectedCategory].certificates[selectedCert].institution}
                         </p>
                         <p className="text-gray-400">
-                          {certificationsData[selectedCategory].certificates[selectedCert].date}
+                          {formatDate(certificationsData[selectedCategory].certificates[selectedCert].date)}
                         </p>
                       </div>
                       <div className="flex items-center gap-4">
@@ -435,12 +439,14 @@ export default function Certifications() {
                             rel="noopener noreferrer"
                             className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors text-white"
                           >
-                            {t.certifications?.verify || "Verificar"} <ExternalLink className="w-4 h-4" />
+                            {t.certifications?.verify} <ExternalLink className="w-4 h-4" />
                           </a>
                         )}
-                        <p className="text-gray-400">
-                          Credential: {certificationsData[selectedCategory].certificates[selectedCert].credential}
-                        </p>
+                        {(currentCert.credential || currentCert.code) && (
+                          <p className="text-gray-400">
+                            {t.certifications?.credential}: {currentCert.credential ?? currentCert.code}
+                          </p>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -451,14 +457,14 @@ export default function Certifications() {
             <button
               onClick={handlePrevious}
               className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 hover:bg-black/70 text-white transition-colors z-10"
-              aria-label={t.certifications?.previousCert || "Previous certificate"}
+              aria-label={t.certifications?.previousCert}
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
             <button
               onClick={handleNext}
               className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 hover:bg-black/70 text-white transition-colors z-10"
-              aria-label={t.certifications?.nextCert || "Next certificate"}
+              aria-label={t.certifications?.nextCert}
             >
               <ChevronRight className="w-6 h-6" />
             </button>

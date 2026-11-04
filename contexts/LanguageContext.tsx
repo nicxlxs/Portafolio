@@ -1,10 +1,15 @@
 "use client"
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from "react"
+import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from "react"
+import es from "@/public/locales/es.json"
+import en from "@/public/locales/en.json"
 
-type Language = "es" | "en"
+export type Language = "es" | "en"
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Translations = Record<string, any>
+
+const dictionaries: Record<Language, Translations> = { es, en }
 
 interface LanguageContextType {
   language: Language
@@ -15,38 +20,33 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
+  // Always start with the default language so server and first client render match.
   const [language, setLanguageState] = useState<Language>("es")
-  const [translations, setTranslations] = useState<Translations>({})
-  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // Load language from localStorage
-    const savedLanguage = (localStorage.getItem("language") as Language) || "es"
-    setLanguageState(savedLanguage)
-    loadTranslations(savedLanguage)
+    try {
+      const saved = localStorage.getItem("language")
+      if (saved === "es" || saved === "en") setLanguageState(saved)
+    } catch {
+      // localStorage unavailable (private mode, etc.)
+    }
   }, [])
 
-  const loadTranslations = async (lang: Language) => {
-    try {
-      setIsLoading(true)
-      const response = await fetch(`/locales/${lang}.json`)
-      const data = await response.json()
-      setTranslations(data)
-    } catch (error) {
-      console.error(`Error loading translations for ${lang}:`, error)
-    } finally {
-      setIsLoading(false)
-    }
-  }
+  useEffect(() => {
+    document.documentElement.lang = language
+  }, [language])
 
-  const setLanguage = (lang: Language) => {
+  const setLanguage = useCallback((lang: Language) => {
     setLanguageState(lang)
-    localStorage.setItem("language", lang)
-    loadTranslations(lang)
-  }
+    try {
+      localStorage.setItem("language", lang)
+    } catch {
+      // ignore
+    }
+  }, [])
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, translations }}>
+    <LanguageContext.Provider value={{ language, setLanguage, translations: dictionaries[language] }}>
       {children}
     </LanguageContext.Provider>
   )

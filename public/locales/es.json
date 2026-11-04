@@ -4,12 +4,16 @@
     "skills": "Habilidades",
     "projects": "Proyectos",
     "contact": "Contacto",
-    "changeTheme": "Cambiar tema"
+    "changeTheme": "Cambiar tema",
+    "home": "Inicio",
+    "language": "Cambiar idioma"
   },
   "aboutMe": {
     "title": "Acerca de Mí",
     "description": "Soy un estudiante apasionado de ingeniería de software con un fuerte interés en el desarrollo web y la creación de soluciones innovadoras. Me encanta aprender nuevas tecnologías y aplicarlas en proyectos desafiantes.",
-    "downloadCV": "Descargar CV"
+    "downloadCV": "Descargar CV",
+    "profileAlt": "Foto de perfil",
+    "cvFileName": "Nicolas_Vera_CV"
   },
   "certifications": {
     "title": "Certificaciones",
@@ -17,17 +21,50 @@
     "previousCert": "Certificado anterior",
     "nextCert": "Siguiente certificado",
     "verify": "Verificar",
-    "blockchain": {
-      "title": "Blockchain",
-      "description": "Especialización en tecnología Blockchain y contratos inteligentes"
+    "credential": "Credencial",
+    "categories": {
+      "blockchain": {
+        "title": "Blockchain",
+        "description": "Especialización en tecnología Blockchain y contratos inteligentes"
+      },
+      "scrum": {
+        "title": "Scrum Master",
+        "description": "Certificación profesional en metodologías ágiles"
+      },
+      "english": {
+        "title": "Inglés",
+        "description": "Certificación en inglés como lengua extranjera"
+      },
+      "databases": {
+        "title": "Bases de datos",
+        "description": "Especialización en diseño e implementación de bases de datos relacionales"
+      },
+      "excel": {
+        "title": "Excel",
+        "description": "Certificaciones en Microsoft Excel y análisis de datos"
+      },
+      "python": {
+        "title": "Python",
+        "description": "Certificaciones en Python y desarrollo de aplicaciones"
+      },
+      "googleCloud": {
+        "title": "Google Cloud",
+        "description": "Certificaciones en Google Cloud Platform y soluciones en la nube"
+      }
     },
-    "scrum": {
-      "title": "Scrum Master",
-      "description": "Certificación profesional en metodologías ágiles"
-    },
-    "english": {
-      "title": "Inglés",
-      "description": "Certificación de nivel avanzado en idioma inglés"
+    "months": {
+      "January": "Enero",
+      "February": "Febrero",
+      "March": "Marzo",
+      "April": "Abril",
+      "May": "Mayo",
+      "June": "Junio",
+      "July": "Julio",
+      "August": "Agosto",
+      "September": "Septiembre",
+      "October": "Octubre",
+      "November": "Noviembre",
+      "December": "Diciembre"
     }
   },
   "skills": {
@@ -35,28 +72,25 @@
     "theseAreMy": "Estas son mis",
     "frontend": "Frontend",
     "backend": "Backend",
-    "tools": "Herramientas"
+    "tools": "Herramientas",
+    "categories": {
+      "Frontend": "Frontend",
+      "Backend": "Backend",
+      "Tools": "Herramientas"
+    }
   },
   "projects": {
     "title": "Mis Proyectos",
     "viewMore": "Ver más",
     "moreProjects": "Más Proyectos",
-    "cargasafe": {
-      "title": "CargaSafe",
-      "description": "Aplicación web para la gestión y monitoreo seguro de cargas, que permite rastrear envíos, controlar su estado y garantizar la integridad durante el transporte."
-    },
-    "connectly": {
-      "title": "Connectly",
-      "description": "Red social para conectar a personas con intereses similares y fomentar la colaboración en proyectos."
-    },
-    "nutrigain": {
-      "title": "NutriGain",
-      "description": "Aplicación web para el entrenamiento físico y la nutrición personalizada, que utiliza gamificación para motivar a los usuarios a alcanzar sus objetivos de salud mediante rutinas, planes alimenticios y seguimiento de progreso. "
-    },
-    "smartgarden": {
-      "title": "Smart Garden",
-      "description": "Aplicación web desarrollada para gestionar proyectos domésticos de hidroponía."
-    }
+    "viewAll": "Ver todos los proyectos",
+    "found": "proyectos encontrados",
+    "foundSingular": "proyecto encontrado",
+    "search": "Buscar proyectos...",
+    "all": "Todos",
+    "none": "No se encontraron proyectos",
+    "previous": "Anterior",
+    "next": "Siguiente"
   },
   "contact": {
     "title": "Contacto",
@@ -65,7 +99,11 @@
     "name": "Nombre",
     "email": "Correo",
     "message": "Mensaje",
-    "send": "Enviar"
+    "send": "Enviar",
+    "namePlaceholder": "Tu nombre",
+    "emailPlaceholder": "tu@correo.com",
+    "messagePlaceholder": "Escribe tu mensaje...",
+    "subject": "Contacto desde tu portafolio"
   },
   "footer": {
     "copyright": "Mi Portafolio. Todos los derechos reservados."
@@ -76,6 +114,6 @@
     "closeMenu": "Cerrar menú",
     "lightMode": "Modo Claro",
     "darkMode": "Modo Oscuro",
-    "about": "About"
+    "about": "Sobre mí"
   }
 }

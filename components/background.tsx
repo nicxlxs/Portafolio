@@ -5,14 +5,18 @@ import { useTheme } from "next-themes"
 
 export default function Background() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const { theme } = useTheme()
+  const { resolvedTheme } = useTheme()
+  const isDark = resolvedTheme !== "light"
 
   useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
+    const canvasEl = canvasRef.current
+    if (!canvasEl) return
 
-    const ctx = canvas.getContext("2d")
-    if (!ctx) return
+    const context = canvasEl.getContext("2d")
+    if (!context) return
+
+    const canvas: HTMLCanvasElement = canvasEl
+    const ctx: CanvasRenderingContext2D = context
 
     const particles: Particle[] = []
     const particleCount = 100
@@ -69,7 +73,7 @@ export default function Background() {
       }
 
       draw(ctx: CanvasRenderingContext2D) {
-        ctx.fillStyle = theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.05)"
+        ctx.fillStyle = isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.18)"
         ctx.beginPath()
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
         ctx.fill()
@@ -85,7 +89,7 @@ export default function Background() {
 
           if (distance < connectionDistance) {
             const opacity = (1 - distance / connectionDistance) * 0.15
-            ctx.strokeStyle = theme === "dark" ? `rgba(255, 255, 255, ${opacity})` : `rgba(0, 0, 0, ${opacity})`
+            ctx.strokeStyle = isDark ? `rgba(255, 255, 255, ${opacity})` : `rgba(0, 0, 0, ${opacity * 1.6})`
             ctx.lineWidth = 1
             ctx.beginPath()
             ctx.moveTo(particles[i].x, particles[i].y)
@@ -101,6 +105,8 @@ export default function Background() {
       particles.push(new Particle())
     }
 
+    let frameId = 0
+
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
@@ -110,7 +116,7 @@ export default function Background() {
         particle.draw(ctx)
       })
 
-      requestAnimationFrame(animate)
+      frameId = requestAnimationFrame(animate)
     }
 
     function handleMouseMove(e: MouseEvent) {
@@ -137,10 +143,11 @@ export default function Background() {
     animate()
 
     return () => {
+      cancelAnimationFrame(frameId)
       window.removeEventListener("resize", resizeCanvas)
       window.removeEventListener("mousemove", handleMouseMove)
     }
-  }, [theme])
+  }, [isDark])
 
   return <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none" />
 }

@@ -116,7 +116,7 @@ export default function Skills() {
   const [category, setCategory] = useState<keyof typeof skillCategories>("Frontend")
   const [isMobile, setIsMobile] = useState(false)
   const [mounted, setMounted] = useState(false)
-  const { theme } = useTheme()
+  const { resolvedTheme } = useTheme()
   const controls = useAnimation()
 
   useEffect(() => {
@@ -149,8 +149,8 @@ export default function Skills() {
   return (
     <section id="skills" className="min-h-screen flex flex-col items-center justify-center p-4">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
-        <h2 className="text-2xl mb-2 text-gray-900 dark:text-white">{t.skills?.theseAreMy || "These are my"}</h2>
-        <h1 className="text-6xl md:text-8xl font-bold mb-8 text-gray-900 dark:text-white">{t.skills?.title || "SKILLS"}</h1>
+        <h2 className="text-2xl mb-2 text-gray-900 dark:text-white">{t.skills?.theseAreMy}</h2>
+        <h1 className="text-6xl md:text-8xl font-bold mb-8 text-gray-900 dark:text-white">{t.skills?.title}</h1>
         <div className="flex flex-wrap gap-4 justify-center">
           {Object.keys(skillCategories).map((cat) => (
             <button
@@ -162,7 +162,7 @@ export default function Skills() {
                   : "bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-white/10 dark:text-white/70 dark:hover:bg-white/20"
               }`}
             >
-              {cat}
+              {t.skills?.categories?.[cat] ?? cat}
             </button>
           ))}
         </div>
@@ -217,7 +217,7 @@ export default function Skills() {
                         src={
                           typeof skill.icon === "string"
                             ? skill.icon
-                            : theme === "dark"
+                            : resolvedTheme === "dark"
                               ? skill.icon.dark
                               : skill.icon.light
                         }
