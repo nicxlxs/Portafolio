@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, useAnimation } from "framer-motion"
+import { motion, useAnimationFrame, useMotionValue } from "framer-motion"
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import { useTheme } from "next-themes"
@@ -111,43 +111,47 @@ const skillCategories = {
   ],
 }
 
+const ROTATION_SPEED = 20 // degrees per second
+
 export default function Skills() {
   const t = useTranslations()
   const [category, setCategory] = useState<keyof typeof skillCategories>("Frontend")
   const [isMobile, setIsMobile] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [paused, setPaused] = useState(false)
   const { resolvedTheme } = useTheme()
-  const controls = useAnimation()
+  const rotation = useMotionValue(0)
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
   useEffect(() => {
-    // Detectar si es móvil
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
     checkMobile()
-    window.addEventListener('resize', checkMobile)
-    
-    return () => window.removeEventListener('resize', checkMobile)
+    window.addEventListener("resize", checkMobile)
+    return () => window.removeEventListener("resize", checkMobile)
   }, [])
 
-  useEffect(() => {
-    controls.start({
-      rotateY: 360,
-      transition: {
-        duration: 20,
-        repeat: Number.POSITIVE_INFINITY,
-        ease: "linear",
-      },
-    })
-  }, [controls])
+  // The whole wheel spins around the Y axis; pausing on hover lets you read a card.
+  useAnimationFrame((_, delta) => {
+    if (paused) return
+    rotation.set((rotation.get() + (ROTATION_SPEED * delta) / 1000) % 360)
+  })
+
+  const skills = skillCategories[category]
+  const cardWidth = isMobile ? 84 : 132
+  const cardHeight = isMobile ? 116 : 180
+  const gap = isMobile ? 18 : 40
+  // Radius so neighbouring cards never overlap, whatever the number of skills.
+  const radius = Math.max(
+    isMobile ? 110 : 190,
+    (cardWidth + gap) / (2 * Math.tan(Math.PI / skills.length)),
+  )
+  const isDark = resolvedTheme === "dark"
 
   return (
-    <section id="skills" className="min-h-screen flex flex-col items-center justify-center p-4">
+    <section id="skills" className="min-h-screen flex flex-col items-center justify-center p-4 overflow-hidden">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
         <h2 className="text-2xl mb-2 text-gray-900 dark:text-white">{t.skills?.theseAreMy}</h2>
         <h1 className="text-6xl md:text-8xl font-bold mb-8 text-gray-900 dark:text-white">{t.skills?.title}</h1>
@@ -168,73 +172,85 @@ export default function Skills() {
         </div>
       </motion.div>
 
-      <motion.div className="relative w-[300px] h-[300px] md:w-[600px] md:h-[600px] preserve-3d" animate={controls}>
-        {skillCategories[category].map((skill, index) => {
-          const angle = (index * 2 * Math.PI) / skillCategories[category].length
-          const radius = isMobile ? 100 : 200
-          const x = radius * Math.cos(angle)
-          const y = radius * Math.sin(angle)
-          const z = 30 * Math.sin(angle * 2)
+      {/* Scene: perspective + slight tilt so the wheel reads as 3D */}
+      <div
+        className="relative flex items-center justify-center w-full"
+        style={{
+          height: cardHeight + 120,
+          perspective: isMobile ? 800 : 1400,
+        }}
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onTouchStart={() => setPaused(true)}
+        onTouchEnd={() => setPaused(false)}
+      >
+        <div style={{ transformStyle: "preserve-3d", transform: "rotateX(-12deg)" }} className="relative">
+          <motion.div
+            key={category}
+            style={{
+              rotateY: rotation,
+              transformStyle: "preserve-3d",
+              width: cardWidth,
+              height: cardHeight,
+            }}
+            className="relative"
+          >
+            {skills.map((skill, index) => {
+              const angle = (index * 360) / skills.length
+              const iconSrc =
+                typeof skill.icon === "string" ? skill.icon : isDark ? skill.icon.dark : skill.icon.light
 
-          return (
-            <motion.div
-              key={skill.name}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-                x: x + radius,
-                y: y + radius,
-                z,
-              }}
-              transition={{
-                duration: 0.8,
-                delay: index * 0.1,
-              }}
-              style={{
-                position: "absolute",
-                transform: `translate(-50%, -50%) translate3d(0, 0, ${z}px)`,
-                transformStyle: "preserve-3d",
-              }}
-              className="hover:scale-110 transition-transform duration-300"
-            >
-              <motion.div
-                animate={{
-                  y: [0, -10, 0],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Number.POSITIVE_INFINITY,
-                  repeatType: "reverse",
-                  ease: "easeInOut",
-                  delay: index * 0.2,
-                }}
-              >
-                <div className="w-20 h-28 md:w-32 md:h-44 rounded-lg bg-white dark:bg-white/90 p-4 md:p-6 flex flex-col items-center justify-between shadow-[0_10px_20px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.2)] transition-shadow duration-300">
-                  <div className="relative w-8 h-8 md:w-12 md:h-12 mb-2">
-                    {mounted && (
-                      <Image
-                        src={
-                          typeof skill.icon === "string"
-                            ? skill.icon
-                            : resolvedTheme === "dark"
-                              ? skill.icon.dark
-                              : skill.icon.light
-                        }
-                        alt={skill.name}
-                        fill
-                        className="object-contain"
-                      />
-                    )}
-                  </div>
-                  <span className="text-xs md:text-sm font-medium text-gray-900">{skill.name}</span>
+              return (
+                <div
+                  key={skill.name}
+                  className="absolute inset-0"
+                  style={{
+                    transformStyle: "preserve-3d",
+                    transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
+                  }}
+                >
+                  {/* Floating motion */}
+                  <motion.div
+                    className="relative w-full h-full"
+                    style={{ transformStyle: "preserve-3d" }}
+                    initial={{ opacity: 0, scale: 0.6 }}
+                    animate={{ opacity: 1, scale: 1, y: [0, -10, 0] }}
+                    transition={{
+                      opacity: { duration: 0.6, delay: index * 0.08 },
+                      scale: { duration: 0.6, delay: index * 0.08 },
+                      y: {
+                        duration: 3,
+                        repeat: Number.POSITIVE_INFINITY,
+                        ease: "easeInOut",
+                        delay: index * 0.25,
+                      },
+                    }}
+                  >
+                    {/* Front face */}
+                    <div
+                      className="absolute inset-0 rounded-xl bg-white dark:bg-white/90 p-3 md:p-5 flex flex-col items-center justify-between border border-gray-200 dark:border-transparent shadow-[0_10px_25px_rgba(0,0,0,0.15)]"
+                      style={{ backfaceVisibility: "hidden" }}
+                    >
+                      <div className="relative w-9 h-9 md:w-14 md:h-14 mt-2">
+                        {mounted && <Image src={iconSrc} alt={skill.name} fill className="object-contain" />}
+                      </div>
+                      <span className="text-xs md:text-sm font-medium text-gray-900 text-center">{skill.name}</span>
+                    </div>
+
+                    {/* Back face: seen when the card turns away from the viewer */}
+                    <div
+                      className="absolute inset-0 rounded-xl bg-gray-900 dark:bg-[#1A1A1A] border border-gray-700 dark:border-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.25)] flex items-center justify-center"
+                      style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+                    >
+                      <div className="w-3/4 h-3/4 rounded-lg border border-white/20" />
+                    </div>
+                  </motion.div>
                 </div>
-              </motion.div>
-            </motion.div>
-          )
-        })}
-      </motion.div>
+              )
+            })}
+          </motion.div>
+        </div>
+      </div>
     </section>
   )
 }
-
