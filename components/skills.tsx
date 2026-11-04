@@ -3,50 +3,29 @@
 import { motion, useAnimationFrame, useMotionValue } from "framer-motion"
 import { useState, useEffect } from "react"
 import Image from "next/image"
-import { useTheme } from "next-themes"
 import { useTranslations } from "@/contexts/LanguageContext"
 
 const skillCategories = {
   Frontend: [
     {
       name: "HTML",
-      icon: {
-        light:
-          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/html%20modo%20blanco-qILOmp8pHH72F9F6qxdgUdyQTQ6Z0K.png",
-        dark: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/html%20modo%20negro-XTtDrqXWKmwj7d5w3DW3o5T5XuxxE4.png",
-      },
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/html5/html5-original.svg",
     },
     {
       name: "CSS",
-      icon: {
-        light:
-          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/css%20modo%20blanco-mU0tGlfXciSxhFVpoljIB97hm5UzC4.png",
-        dark: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/css%20modo%20negro-FXXmoLeUM6GrhZ1vifzmbBYjsnDvRd.png",
-      },
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/css3/css3-original.svg",
     },
     {
       name: "JavaScript",
-      icon: {
-        light:
-          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/javascript%20modo%20blanco-9Sy8dalrvAmeYNf7KlytlxYNIQau41.png",
-        dark: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/javascript%20modo%20negro-IrETsH0zZ9FFtwWUIj18ErkLY6yQLp.png",
-      },
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/javascript/javascript-original.svg",
     },
     {
       name: "React",
-      icon: {
-        light:
-          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/react%20modo%20blanco-bT21bRmjBYdIwLN2Y1KsFGY8JfrnZ5.png",
-        dark: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/rect%20modo%20negro-t0FsK5HaN5AQXExLlGWVhzRR3DFtGO.png",
-      },
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/react/react-original.svg",
     },
     {
       name: "Next.js",
-      icon: {
-        light:
-          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/nextjs%20modo%20blanco-dZoSKzWHnMyaGRMZkWlppD0AtjVv32.png",
-        dark: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/nextjs%20modo%20negro-hLrBs6VYw68txlxX2DRYkoV5uqgfTX.png",
-      },
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/nextjs/nextjs-original.svg",
     },
     {
       name: "TypeScript",
@@ -64,27 +43,15 @@ const skillCategories = {
   Backend: [
     {
       name: "Node.js",
-      icon: {
-        light:
-          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/nodejs%20modo%20blanco-7YUJdYwbiupEpR4CxODeCSgcJvo8x5.png",
-        dark: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/nodejs%20modo%20negro-603pE3UyRPGU81ydluWPxTIEZsyszt.png",
-      },
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/nodejs/nodejs-original.svg",
     },
     {
       name: "Express",
-      icon: {
-        light:
-          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/express%20modo%20blanco-Bi5CFPMF5xtYtO8S5dDcL5nLWUue1h.png",
-        dark: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/express%20modo%20negro-6D1xT9cC4HgQb7tLFzPbZG48hQBPVb.png",
-      },
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/express/express-original.svg",
     },
     {
       name: "Spring Boot",
-      icon: {
-        light:
-          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/springboot%20modo%20blanco-sIwI4pEyddXlgNgiJSKkghFb5ROL2R.png",
-        dark: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/springboot%20modo%20negro-DPslBaUPFa1DrZdTYDwwJGlV7CZR9h.png",
-      },
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/spring/spring-original.svg",
     },
     {
       name: "Java",
@@ -110,35 +77,19 @@ const skillCategories = {
   Tools: [
     {
       name: "Git",
-      icon: {
-        light:
-          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git%20modo%20blanco-5Fbg6xoJTd0WvuWLfdhIi9NXhV6TWv.png",
-        dark: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git%20modo%20negro-uZofjpfoeqF11JOH9p4Y4inJ2ztOaV.png",
-      },
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/git/git-original.svg",
     },
     {
       name: "Docker",
-      icon: {
-        light:
-          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/icons8-docker-500-i3c4uMPLzvohWd93hqIvcMLfmjuPTG.png",
-        dark: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/icons8-docker-500%20(1)-wrVe8LuXUs22LB3jAmwLfCppbGN2Y5.png",
-      },
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/docker/docker-original.svg",
     },
     {
       name: "Postman",
-      icon: {
-        light:
-          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/postman%20modo%20blanco-qC4sbzvEBZJc4zZdoYMnx3lYkyGb0y.png",
-        dark: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/postman%20modo%20negro-hXVu7O52nGSdZnOaJX7L0AZQXoqTka.png",
-      },
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/postman/postman-original.svg",
     },
     {
       name: "VS Code",
-      icon: {
-        light:
-          "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/icons8-visual-studio-500-OQKd2t7DKQnMTgX5H5Iu71LfQYpEDs.png",
-        dark: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/icons8-visual-studio-500%20(1)-ux45jX5u6C25akumfF6SETmh4BTA6u.png",
-      },
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/vscode/vscode-original.svg",
     },
     {
       name: "GitHub",
@@ -158,7 +109,6 @@ export default function Skills() {
   const [category, setCategory] = useState<keyof typeof skillCategories>("Frontend")
   const [isMobile, setIsMobile] = useState(false)
   const [mounted, setMounted] = useState(false)
-  const { resolvedTheme } = useTheme()
   const rotation = useMotionValue(0)
 
   useEffect(() => {
@@ -178,15 +128,14 @@ export default function Skills() {
   })
 
   const skills = skillCategories[category]
-  const cardWidth = isMobile ? 76 : 132
-  const cardHeight = isMobile ? 116 : 180
-  const gap = isMobile ? 10 : 40
+  const cardWidth = isMobile ? 82 : 160
+  const cardHeight = isMobile ? 112 : 216
+  const gap = isMobile ? 4 : 44
   // Radius so neighbouring cards never overlap, whatever the number of skills.
   const radius = Math.max(
-    isMobile ? 100 : 190,
+    isMobile ? 100 : 200,
     (cardWidth + gap) / (2 * Math.tan(Math.PI / skills.length)),
   )
-  const isDark = resolvedTheme === "dark"
 
   return (
     <section id="skills" className="min-h-screen flex flex-col items-center justify-center p-4 overflow-hidden">
@@ -231,9 +180,6 @@ export default function Skills() {
           >
             {skills.map((skill, index) => {
               const angle = (index * 360) / skills.length
-              const iconSrc =
-                typeof skill.icon === "string" ? skill.icon : isDark ? skill.icon.dark : skill.icon.light
-
               return (
                 <div
                   key={skill.name}
@@ -262,13 +208,13 @@ export default function Skills() {
                   >
                     {/* Front face */}
                     <div
-                      className="absolute inset-0 rounded-xl bg-white dark:bg-white/90 p-3 md:p-5 flex flex-col items-center justify-between border border-gray-200 dark:border-transparent shadow-[0_10px_25px_rgba(0,0,0,0.15)]"
+                      className="absolute inset-0 rounded-xl bg-white dark:bg-white/90 p-3 md:p-6 flex flex-col items-center justify-between border border-gray-200 dark:border-transparent shadow-[0_10px_25px_rgba(0,0,0,0.15)]"
                       style={{ backfaceVisibility: "hidden" }}
                     >
-                      <div className="relative w-9 h-9 md:w-14 md:h-14 mt-2">
-                        {mounted && <Image src={iconSrc} alt={skill.name} fill className="object-contain" />}
+                      <div className="relative w-10 h-10 md:w-[4.5rem] md:h-[4.5rem] mt-2">
+                        {mounted && <Image src={skill.icon} alt={skill.name} fill className="object-contain" />}
                       </div>
-                      <span className="text-xs md:text-sm font-medium text-gray-900 text-center">{skill.name}</span>
+                      <span className="text-xs md:text-base font-medium text-gray-900 text-center">{skill.name}</span>
                     </div>
 
                     {/* Back face: seen when the card turns away from the viewer */}
