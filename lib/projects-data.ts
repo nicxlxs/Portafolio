@@ -56,13 +56,13 @@ export const projectsData: Project[] = [
     id: 53,
     title: "GeOps",
     description: {
-      es: "Aplicación web para la gestión y operación de actividades geoespaciales, con una interfaz moderna y fácil de usar.",
-      en: "Web application for managing and operating geospatial activities, with a modern and easy-to-use interface."
+      es: "GeoPS Labs (Geo Publicity Service) es una plataforma web que conecta comercios de productos asiáticos (Corea, Japón y China) con consumidores de Lima Moderna mediante geolocalización y notificaciones web push, ofreciendo promociones relevantes en tiempo real.",
+      en: "GeoPS Labs (Geo Publicity Service) is a web platform that connects Asian product stores (Korea, Japan and China) with consumers in Lima Moderna through geolocation and web push notifications, delivering relevant promotions in real time."
     },
     image: "/projects/geops.png",
     tags: ["Next.js", "TypeScript", "Vercel"],
     link: "https://geops-app-web.vercel.app",
-    github: "https://geops-app-web.vercel.app/",
+    github: "https://github.com/GeopsEnterprise",
     featured: true
   },
   {
